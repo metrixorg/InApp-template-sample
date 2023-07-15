@@ -2,7 +2,7 @@
   "name": "js2android",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/js2android.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build"
