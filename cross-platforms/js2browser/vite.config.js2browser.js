@@ -10,10 +10,10 @@ export default defineConfig(({ command, mode }) => {
             target: 'es2015',
             minify: 'terser',
             lib: {
-                entry: path.resolve(__dirname, 'src/js2android.ts'),
+                entry: path.resolve(__dirname, 'src/js2browser.ts'),
                 name: 'Metrix',
                 formats: ['umd'],
-                fileName: format => `js2android.js`,
+                fileName: format => `js2browser.js`,
             },
 
         },

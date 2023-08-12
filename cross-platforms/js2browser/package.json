@@ -1,11 +1,11 @@
 {
-  "name": "js2android",
+  "name": "js2browser",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/js2android.js",
+  "main": "dist/js2browser.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vite build"
+    "build": "vite build --config vite.config.js2browser.js"
   },
   "author": "Metrix",
   "license": "ISC",
