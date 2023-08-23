@@ -1,11 +1,11 @@
 {
-  "name": "js2browser",
+  "name": "in-app-to-sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/js2browser.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vite build --config vite.config.js2browser.js"
+    "build": "vite build --config vite.config.js"
   },
   "author": "Metrix",
   "license": "ISC",

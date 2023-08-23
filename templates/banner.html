@@ -1,0 +1,72 @@
+<!-- Font (you can remove this if you don't need it) -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Raleway:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<!-- CSS Reset (recommended to have this on your code) -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --primary: #425ae1;
+    --primary-contrast: #fff;
+  }
+  body {
+    font-family: 'Raleway', sans-serif;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+  }
+  p {
+    margin: 1rem 0;
+  }
+  .banner-container {
+    position: relative;
+    border-radius: 8px;
+    margin: 0.5rem;
+    padding: 1.5rem;
+    background-color: var(--primary);
+  }
+  .close-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+  .banner-title {
+    text-align: center;
+    color: var(--primary-contrast);
+  }
+</style>
+<div class="banner-container">
+  <div class="close-btn" id="js-close-btn">
+    <svg
+      width=" 24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_2018_8399)">
+        <path
+          d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+          fill="#fff"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_2018_8399"><rect width="24" height="24" fill="white" /></clipPath>
+      </defs>
+    </svg>
+  </div>
+  <div>
+    <!-- Change title here -->
+    <h1 class="banner-title">Get a 30% discount on your yearly plan today</h1>
+  </div>
+</div>
+<script>
+  document.getElementById('js-close-btn').addEventListener('click', () => {
+    console.log('close');
+  }); // Put your javascript code here
+</script>
