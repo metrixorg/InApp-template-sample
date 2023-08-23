@@ -5,13 +5,13 @@ import {AndroidAnalyticBridge, AndroidInAppBridge} from "./android/models";
 
 declare global {
   interface Window {
-    /** Campaign ID of current in-app. This will be set to window object by backend */
+    /** Campaign ID of current in-app. This will be set inside window object by backend */
     id: string;
 
-    /** Bridge for actions on android SDK. This will be set to window object by SDK */
+    /** Bridge for actions on android SDK. This will be set inside window object by SDK */
     MetrixInAppBridge: AndroidInAppBridge;
 
-    /** Bridge for sending events to android SDK. This will be set to window object by SDK */
+    /** Bridge for sending events to android SDK. This will be set inside window object by SDK */
     MetrixAnalyticsBridge: AndroidAnalyticBridge;
   }
 }
@@ -25,16 +25,20 @@ if (window.MetrixInAppBridge && window.MetrixAnalyticsBridge) {
 
 bridge.initialize();
 
-function openUrl(url: string) {
-  bridge.openUrl(url);
+function openUrl(url?: string) {
+  if (url) {
+    bridge.openUrl(url);
+  }
 }
 
 function close() {
   bridge.close();
 }
 
-function sendEvent(slug: string, attributes?: Record<string, string>) {
-  bridge.sendEvent(slug, attributes);
+function sendEvent(slug?: string, attributes?: Record<string, string>) {
+  if (slug) {
+    bridge.sendEvent(slug, attributes);
+  }
 }
 
 export { openUrl, close, sendEvent };
