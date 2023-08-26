@@ -28,6 +28,8 @@ bridge.initialize();
 function openUrl(url?: string) {
   if (url) {
     bridge.openUrl(url);
+  } else {
+    throw Error('Url is not provided inside openUrl method')
   }
 }
 
@@ -38,6 +40,8 @@ function close() {
 function sendEvent(slug?: string, attributes?: Record<string, string>) {
   if (slug) {
     bridge.sendEvent(slug, attributes);
+  } else {
+    throw Error('Slug of event is not provided inside sendEvent method')
   }
 }
 
