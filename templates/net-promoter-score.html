@@ -1,0 +1,152 @@
+<!-- Font (you can remove this if you don't need it) -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Raleway:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<!-- CSS Reset (recommended to have this on your code) -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --primary: #425ae1;
+    --primary-contrast: #fff;
+  }
+  body {
+    font-family: 'Raleway', sans-serif;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 1rem 0;
+  }
+  p {
+    margin-bottom: 1rem;
+  }
+  .banner-title {
+    text-align: center;
+  }
+  .banner-container {
+    border-radius: 8px;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  .close-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+  .nps-container {
+    margin-top: 4rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .nps-container > button {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, 0.07);
+  }
+  .nps-sub {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    color: #425ae1;
+  }
+  .primary-btn {
+    background-color: var(--primary);
+    color: var(--primary-contrast);
+    padding: 0.5rem 1.5rem;
+    font-size: 1.25rem;
+    border: none;
+    border-radius: 8px;
+  }
+  .submit-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+  }
+</style>
+<div class="banner-container">
+  <div class="close-btn" id="js-close-btn">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_2018_8399)">
+        <path
+          d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+          fill="#323232"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_2018_8399"><rect width="24" height="24" fill="white" /></clipPath>
+      </defs>
+    </svg>
+  </div>
+  <div>
+    <!-- Change title here -->
+    <h1 class="banner-title">Text</h1>
+    <p>How likely are you recommend us to a friend</p>
+    <a id="js-go-to-google">GO TO GOOGLE</a>
+    <!-- Put image here -->
+    <div class="nps-container">
+      <button id="nps-item-1" onclick="selectNpsItem(1)">1</button>
+      <button id="nps-item-2" onclick="selectNpsItem(2)">2</button>
+      <button id="nps-item-3" onclick="selectNpsItem(3)">3</button>
+      <button id="nps-item-4" onclick="selectNpsItem(4)">4</button>
+      <button id="nps-item-5" onclick="selectNpsItem(5)">5</button>
+      <button id="nps-item-6" onclick="selectNpsItem(6)">6</button>
+      <button id="nps-item-7" onclick="selectNpsItem(7)">7</button>
+      <button id="nps-item-8" onclick="selectNpsItem(8)">8</button>
+      <button id="nps-item-9" onclick="selectNpsItem(9)">9</button>
+      <button id="nps-item-10" onclick="selectNpsItem(10)">10</button>
+    </div>
+    <div class="nps-sub">
+      <span>Not likely</span>
+      <span>Very likely</span>
+    </div>
+    <!-- Change button title here -->
+    <div class="submit-container">
+      <button class="primary-btn" id="js-submit-btn">Submit</button>
+    </div>
+  </div>
+</div>
+<script>
+  let selectedNps = null;
+
+  function selectNpsItem(number) {
+    selectedNps = number;
+    document.querySelectorAll('.nps-container > button').forEach(button => {
+      button.style.backgroundColor = 'transparent';
+      button.style.color = 'black'
+    });
+    const selectedButton = document.getElementById(`nps-item-${number}`);
+    selectedButton.style.backgroundColor = 'var(--primary)' ;
+    selectedButton.style.color = 'var(--primary-contrast)';
+  }
+
+  document.getElementById("js-close-btn")
+    .addEventListener("click", () => { MetrixApi.close() });
+  document.getElementById("js-submit-btn")
+    .addEventListener("click", () => { MetrixApi.sendEvent() })
+  document.getElementById("js-go-to-google")
+    .addEventListener("click", () => { MetrixApi.openUrl('https://google.com') });
+  // Put your javascript code here
+</script>
