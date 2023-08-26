@@ -143,10 +143,10 @@
   }
 
   document.getElementById("js-close-btn")
-    .addEventListener("click", () => { MetrixApi.close() });
+    .addEventListener("click", () => { MetrixInAppApi.close() });
   document.getElementById("js-submit-btn")
-    .addEventListener("click", () => { MetrixApi.sendEvent() })
+    .addEventListener("click", () => { MetrixInAppApi.sendEvent() })
   document.getElementById("js-go-to-google")
-    .addEventListener("click", () => { MetrixApi.openUrl('https://google.com') });
+    .addEventListener("click", () => { MetrixInAppApi.openUrl('https://google.com') });
   // Put your javascript code here
 </script>
