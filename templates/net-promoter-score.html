@@ -102,9 +102,8 @@
   </div>
   <div>
     <!-- Change title here -->
-    <h1 class="banner-title">Text</h1>
-    <p>How likely are you recommend us to a friend</p>
-    <a id="js-go-to-google">GO TO GOOGLE</a>
+    <h1 class="banner-title">Metrix</h1>
+    <p id="js-open-url">How likely are you recommend us to a friend</p>
     <!-- Put image here -->
     <div class="nps-container">
       <button id="nps-item-1" onclick="selectNpsItem(1)">1</button>
@@ -145,8 +144,8 @@
   document.getElementById("js-close-btn")
     .addEventListener("click", () => { MetrixInAppApi.close() });
   document.getElementById("js-submit-btn")
-    .addEventListener("click", () => { MetrixInAppApi.sendEvent() })
-  document.getElementById("js-go-to-google")
-    .addEventListener("click", () => { MetrixInAppApi.openUrl('https://google.com') });
+    .addEventListener("click", () => { MetrixInAppApi.sendResponse({ nps: 2 }) })
+  document.getElementById("js-open-url")
+    .addEventListener("click", () => { MetrixInAppApi.openUrl('https://metrix.ir') });
   // Put your javascript code here
 </script>

@@ -1,5 +1,5 @@
 import { ActionData, DisplayOptions, AndroidMessage, PageMetaData } from './models';
-import {Bridge} from "../models";
+import { Bridge } from '../models';
 
 const OPTIONS: DisplayOptions = {
   location: 'center_modal',
@@ -39,8 +39,15 @@ export class AndroidBridge extends Bridge {
     this.newEvent(slug, attributes);
   }
 
-  sendResponse() {
-    /* empty */
+  sendResponse(attributes?: Record<string, string>) {
+    const campaignId = window.id;
+    if (!campaignId) {
+      throw Error('Campaign id not found');
+    }
+    window.MetrixInAppBridge.sendResponse(
+      campaignId,
+      attributes ? JSON.stringify(attributes) : undefined,
+    );
   }
 
   private postMessageToNative(message: AndroidMessage) {

@@ -1,7 +1,7 @@
 import { Bridge } from './models';
 import { AndroidBridge } from './android/bridge';
 import { IframeBridge } from './web/bridge';
-import {AndroidAnalyticBridge, AndroidInAppBridge} from "./android/models";
+import { AndroidAnalyticBridge, AndroidInAppBridge } from './android/models';
 
 declare global {
   interface Window {
@@ -25,24 +25,32 @@ if (window.MetrixInAppBridge && window.MetrixAnalyticsBridge) {
 
 bridge.initialize();
 
+/** Open url from the app */
 function openUrl(url?: string) {
   if (url) {
     bridge.openUrl(url);
   } else {
-    throw Error('Url is not provided inside openUrl method')
+    throw Error('Url is not provided inside openUrl method');
   }
 }
 
+/** Close in-app banner */
 function close() {
   bridge.close();
 }
 
+/** Send events using slug and optional event attributes */
 function sendEvent(slug?: string, attributes?: Record<string, string>) {
   if (slug) {
     bridge.sendEvent(slug, attributes);
   } else {
-    throw Error('Slug of event is not provided inside sendEvent method')
+    throw Error('Slug of event is not provided inside sendEvent method');
   }
 }
 
-export { openUrl, close, sendEvent };
+/** Track user interactions with in-app banner. ex. sending { nps: 2 } after selecting number 2 inside nps form */
+function sendResponse(attributes?: Record<string, string>) {
+  bridge.sendResponse(attributes);
+}
+
+export { openUrl, close, sendEvent, sendResponse };

@@ -1,5 +1,5 @@
-import { IframeMessage, MessageType } from './models';
-import { Bridge } from '../models';
+import {IframeMessage, MessageType} from './models';
+import {Bridge} from '../models';
 
 export class IframeBridge extends Bridge {
   initialize() {
@@ -35,7 +35,14 @@ export class IframeBridge extends Bridge {
     window.parent.postMessage(message, '*');
   }
 
-  sendResponse() {
-    /* empty */
+  sendResponse(attributes?: Record<string, string>) {
+    const message: IframeMessage = {
+      type: MessageType.SEND_RESPONSE,
+      id: window.id,
+      payload: {
+        attributes
+      }
+    }
+    window.parent.postMessage(message, '*')
   }
 }

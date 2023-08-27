@@ -1,6 +1,7 @@
 export type DisplayLocation = 'center_modal'
 export interface AndroidInAppBridge {
   postMessage: (messageJSON: string) => void;
+  sendResponse: (campaignId: string, attributesJSON?: string) => void;
 }
 
 export interface AndroidAnalyticBridge {
