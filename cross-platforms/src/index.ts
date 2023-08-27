@@ -17,10 +17,12 @@ declare global {
 }
 
 let bridge: Bridge;
-if (window.MetrixInAppBridge && window.MetrixAnalyticsBridge) {
+if (window.MetrixInAppBridge) {
   bridge = new AndroidBridge();
+  console.log('Android');
 } else {
   bridge = new IframeBridge();
+  console.log('Web')
 }
 
 bridge.initialize();

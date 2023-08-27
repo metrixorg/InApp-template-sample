@@ -8,12 +8,10 @@ const OPTIONS: DisplayOptions = {
 
 export class AndroidBridge extends Bridge {
   initialize() {
-    const pageMetaData = this.getPageMetaData();
-
     window.onload = () => {
       this.postMessageToNative({
         type: 'rendering_complete',
-        pageMetaData,
+        pageMetaData: this.getPageMetaData(),
         displayLocation: OPTIONS.location,
         dragToDismissDisabled: !OPTIONS.shouldVerticalDragDismissMessage,
       });
@@ -21,7 +19,7 @@ export class AndroidBridge extends Bridge {
     window.onresize = () => {
       this.postMessageToNative({
         type: 'resize',
-        pageMetaData,
+        pageMetaData: this.getPageMetaData(),
         displayLocation: OPTIONS.location,
       });
     };
@@ -32,7 +30,7 @@ export class AndroidBridge extends Bridge {
   }
 
   openUrl(url: string) {
-    this.actionTaken({ action: { action_type: 'U', url }, close: true });
+    this.actionTaken({ action: { action_type: 'U', url: url }, close: true });
   }
 
   sendEvent(slug: string, attributes?: Record<string, string>) {
@@ -44,10 +42,11 @@ export class AndroidBridge extends Bridge {
     if (!campaignId) {
       throw Error('Campaign id not found');
     }
-    window.MetrixInAppBridge.sendResponse(
+    this.postMessageToNative({
+      type: 'send_response',
       campaignId,
-      attributes ? JSON.stringify(attributes) : undefined,
-    );
+      attributes: attributes ? JSON.stringify(attributes) : undefined,
+    });
   }
 
   private postMessageToNative(message: AndroidMessage) {
