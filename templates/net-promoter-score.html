@@ -134,7 +134,7 @@
     selectedNps = number;
     document.querySelectorAll('.nps-container > button').forEach(button => {
       button.style.backgroundColor = 'transparent';
-      button.style.color = 'black'
+      button.style.color = 'black';
     });
     const selectedButton = document.getElementById(`nps-item-${number}`);
     selectedButton.style.backgroundColor = 'var(--primary)' ;
@@ -144,7 +144,12 @@
   document.getElementById("js-close-btn")
     .addEventListener("click", () => { MetrixInAppApi.close() });
   document.getElementById("js-submit-btn")
-    .addEventListener("click", () => { MetrixInAppApi.sendResponse({ nps: 2 }) })
+    .addEventListener("click", () => {
+      if (selectedNps) {
+        MetrixInAppApi.sendResponse({ nps: selectedNps });
+        MetrixInAppApi.close();
+      }
+    })
   document.getElementById("js-open-url")
     .addEventListener("click", () => { MetrixInAppApi.openUrl('https://metrix.ir') });
   // Put your javascript code here
