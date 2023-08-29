@@ -1,9 +1,23 @@
-import {IframeMessage, MessageType} from './models';
-import {Bridge} from '../models';
+import { IframeMessage, MessageType } from './models';
+import { Bridge } from '../models';
 
 export class IframeBridge extends Bridge {
   initialize() {
-    /* empty */
+    window.addEventListener('message', event => {
+      if (event.data?.type === 'getDimensions' && event.data?.id === window.id) {
+        const contentHeight = document.body.scrollHeight;
+        const contentWidth = document.body.scrollWidth;
+        const messageDimensionsBody = {
+          id: window.id,
+          type: 'SCALE_IFRAME',
+          payload: {
+            width: contentWidth,
+            height: contentHeight,
+          },
+        };
+        window.parent.postMessage(messageDimensionsBody, '*');
+      }
+    });
   }
 
   close() {
@@ -40,9 +54,9 @@ export class IframeBridge extends Bridge {
       type: MessageType.SEND_RESPONSE,
       id: window.id,
       payload: {
-        attributes
-      }
-    }
-    window.parent.postMessage(message, '*')
+        attributes,
+      },
+    };
+    window.parent.postMessage(message, '*');
   }
 }
