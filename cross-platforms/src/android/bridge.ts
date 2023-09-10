@@ -50,7 +50,7 @@ export class AndroidBridge extends Bridge {
   }
 
   private postMessageToNative(message: AndroidMessage) {
-    console.log('postMessageToNative(): ' + message);
+    console.log('postMessageToNative(): ' + JSON.stringify(message));
 
     let messageJSON = JSON.stringify(message);
     if (window.MetrixInAppBridge) {
@@ -61,17 +61,8 @@ export class AndroidBridge extends Bridge {
   }
 
   private getPageMetaData(): PageMetaData {
-    let body = document.body,
-      html = document.documentElement;
-
-    let height = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight,
-    );
-
+    const height = document.body.scrollHeight;
+    console.log('height:', height);
     return {
       rect: {
         height,

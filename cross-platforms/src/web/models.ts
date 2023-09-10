@@ -2,6 +2,7 @@ export interface IframeMessage {
   type: MessageType;
   payload?: {
     slug?: string;
+    payload?: Record<string, string>;
     attributes?: Record<string, string>;
   } | string;
   id: string;

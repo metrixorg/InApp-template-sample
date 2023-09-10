@@ -54,7 +54,7 @@ export class IframeBridge extends Bridge {
       type: MessageType.SEND_RESPONSE,
       id: window.id,
       payload: {
-        attributes,
+        payload: attributes,
       },
     };
     window.parent.postMessage(message, '*');
