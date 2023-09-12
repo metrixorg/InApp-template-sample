@@ -2,6 +2,7 @@ import { Bridge } from './models';
 import { AndroidBridge } from './android/bridge';
 import { IframeBridge } from './web/bridge';
 import { AndroidAnalyticBridge, AndroidInAppBridge } from './android/models';
+import {Utils} from "./utils";
 
 declare global {
   interface Window {
@@ -19,13 +20,12 @@ declare global {
 let bridge: Bridge;
 if (window.MetrixInAppBridge) {
   bridge = new AndroidBridge();
-  console.log('Android');
 } else {
   bridge = new IframeBridge();
-  console.log('Web')
 }
 
 bridge.initialize();
+Utils.addCloseButton(bridge);
 
 /** Open url from the app */
 function openUrl(url?: string) {

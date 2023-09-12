@@ -3,6 +3,8 @@ import { Bridge } from '../models';
 
 export class IframeBridge extends Bridge {
   initialize() {
+    console.log('platform: Web')
+
     window.addEventListener('message', event => {
       if (event.data?.type === 'getDimensions' && event.data?.id === window.id) {
         const contentHeight = document.body.scrollHeight;

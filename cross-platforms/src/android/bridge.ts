@@ -8,6 +8,8 @@ const OPTIONS: DisplayOptions = {
 
 export class AndroidBridge extends Bridge {
   initialize() {
+    console.log('platform: android');
+
     window.onload = () => {
       this.postMessageToNative({
         type: 'rendering_complete',
