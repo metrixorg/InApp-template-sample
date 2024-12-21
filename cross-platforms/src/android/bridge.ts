@@ -40,13 +40,12 @@ export class AndroidBridge extends Bridge {
   }
 
   sendResponse(attributes?: Record<string, string>) {
-    const campaignId = window.id;
-    if (!campaignId) {
-      throw Error('Campaign id not found');
+    if (!window.id) {
+      throw Error('Campaign id is undefined')
     }
     this.postMessageToNative({
       type: 'send_response',
-      campaignId,
+      id: window.id,
       attributes: attributes ? JSON.stringify(attributes) : undefined,
     });
   }

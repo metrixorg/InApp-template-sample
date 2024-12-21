@@ -34,6 +34,6 @@ export interface AndroidMessage {
   pageMetaData?: PageMetaData;
   displayLocation?: DisplayLocation;
   dragToDismissDisabled?: boolean;
-  campaignId?: string;
+  id?: string;
   attributes?: string;
 }
