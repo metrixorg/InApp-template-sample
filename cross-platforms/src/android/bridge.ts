@@ -10,21 +10,21 @@ export class AndroidBridge extends Bridge {
   initialize() {
     console.log('platform: android');
 
-    window.onload = () => {
+    window.addEventListener('load', () => {
       this.postMessageToNative({
         type: 'rendering_complete',
         pageMetaData: this.getPageMetaData(),
         displayLocation: OPTIONS.location,
         dragToDismissDisabled: !OPTIONS.shouldVerticalDragDismissMessage,
       });
-    };
-    window.onresize = () => {
+    })
+    window.addEventListener('resize', () => {
       this.postMessageToNative({
         type: 'resize',
         pageMetaData: this.getPageMetaData(),
         displayLocation: OPTIONS.location,
       });
-    };
+    })
   }
 
   close() {

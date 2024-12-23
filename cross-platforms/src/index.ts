@@ -20,12 +20,13 @@ declare global {
 let bridge: Bridge;
 if (window.MetrixInAppBridge) {
   bridge = new AndroidBridge();
+  Utils.addCloseButton(bridge);
 } else {
   bridge = new IframeBridge();
 }
 
 bridge.initialize();
-Utils.addCloseButton(bridge);
+
 
 /** Open url from the app */
 function openUrl(url?: string) {
